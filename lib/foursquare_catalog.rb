@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'open-uri'
 require 'nokogiri'
 module FoursquareCatalog
@@ -14,10 +16,10 @@ module FoursquareCatalog
     def parse
       html_body.map do |place|
         [
-            format(place, @css_name),
-            @type_name,
-            format(place, @css_address),
-            @foursquare_id
+          format(place, @css_name),
+          @type_name,
+          format(place, @css_address),
+          @foursquare_id
         ]
       end
     end
