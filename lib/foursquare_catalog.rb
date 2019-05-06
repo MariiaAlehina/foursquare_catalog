@@ -1,12 +1,10 @@
-# frozen_string_literal: true
-
 require 'open-uri'
 require 'nokogiri'
-module FoursquareCatalog
+module Scraping
   class Information
-    def initialize(type_name, type_url, options = {})
+    def initialize(type_name, url, options = {})
       @type_name = type_name
-      @url = type_url
+      @url = url
       @css_block = options[:css_block]
       @css_name = options[:css_name]
       @css_address = options[:css_address]
@@ -15,12 +13,12 @@ module FoursquareCatalog
 
     def parse
       html_body.map do |place|
-        [
-          format(place, @css_name),
-          @type_name,
-          format(place, @css_address),
-          @foursquare_id
-        ]
+        {
+            name: format(place, @css_name),
+            type_name: @type_name,
+            foursquare_id: @foursquare_id,
+            address: format(place, @css_address)
+        }
       end
     end
 
