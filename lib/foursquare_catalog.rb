@@ -1,6 +1,6 @@
 require 'open-uri'
 require 'nokogiri'
-module Scraping
+module FoursquareCatalog
   class Information
     def initialize(type_name, url, options = {})
       @type_name = type_name
